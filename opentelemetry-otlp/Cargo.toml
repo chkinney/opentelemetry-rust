@@ -60,6 +60,7 @@ protoc-grpcio = { version = "3.0"}
 [features]
 trace = ["opentelemetry/trace"]
 metrics = ["opentelemetry/metrics", "default"]
+logs = ["opentelemetry/logs"]
 
 default = ["tonic", "tonic-build", "prost", "tokio"]
 tls = ["tonic/tls"]

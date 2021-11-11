@@ -5,6 +5,9 @@ pub mod metrics;
 #[cfg(feature = "trace")]
 #[cfg_attr(docsrs, doc(cfg(feature = "trace")))]
 pub mod trace;
+#[cfg(feature = "logs")]
+#[cfg_attr(docsrs, doc(cfg(feature = "logs")))]
+pub mod logs;
 
 /// Marker trait for errors returned by exporters
 pub trait ExportError: std::error::Error + Send + Sync + 'static {

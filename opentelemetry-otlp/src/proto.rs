@@ -11,6 +11,12 @@ pub mod collector {
             include!(concat!(env!("OUT_DIR"), "/tonic", "/opentelemetry.proto.collector.trace.v1.rs"));
         }
     }
+
+    pub mod logs {
+        pub mod v1 {
+            include!(concat!(env!("OUT_DIR"), "/tonic", "/opentelemetry.proto.collector.logs.v1.rs"));
+        }
+    }
 }
 
 #[cfg(feature = "tonic")]
@@ -41,6 +47,13 @@ pub mod trace {
     }
 }
 
+#[cfg(feature = "tonic")]
+pub mod logs {
+    pub mod v1 {
+        include!(concat!(env!("OUT_DIR"), "/tonic", "/opentelemetry.proto.logs.v1.rs"));
+    }
+}
+
 #[cfg(feature="http-proto")]
 pub mod prost {
     pub mod collector {
@@ -53,6 +66,12 @@ pub mod prost {
         pub mod trace {
             pub mod v1 {
                 include!(concat!(env!("OUT_DIR"), "/prost", "/opentelemetry.proto.collector.trace.v1.rs"));
+            }
+        }
+
+        pub mod logs {
+            pub mod v1 {
+                include!(concat!(env!("OUT_DIR"), "/prost", "/opentelemetry.proto.collector.logs.v1.rs"));
             }
         }
     }
@@ -78,6 +97,12 @@ pub mod prost {
     pub mod trace {
         pub mod v1 {
                 include!(concat!(env!("OUT_DIR"), "/prost", "/opentelemetry.proto.trace.v1.rs"));
+        }
+    }
+
+    pub mod logs {
+        pub mod v1 {
+                include!(concat!(env!("OUT_DIR"), "/prost", "/opentelemetry.proto.logs.v1.rs"));
         }
     }
 }

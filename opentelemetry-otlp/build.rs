@@ -28,6 +28,8 @@ fn main() {
                 "src/proto/opentelemetry-proto/opentelemetry/proto/collector/trace/v1/trace_service.proto",
                 "src/proto/opentelemetry-proto/opentelemetry/proto/metrics/v1/metrics.proto",
                 "src/proto/opentelemetry-proto/opentelemetry/proto/collector/metrics/v1/metrics_service.proto",
+                "src/proto/opentelemetry-proto/opentelemetry/proto/logs/v1/logs.proto",
+                "src/proto/opentelemetry-proto/opentelemetry/proto/collector/logs/v1/logs_service.proto",
             ],
             &["src/proto/opentelemetry-proto"],
         )
@@ -52,6 +54,8 @@ fn main() {
                 "src/proto/opentelemetry-proto/opentelemetry/proto/collector/trace/v1/trace_service.proto",
                 "src/proto/opentelemetry-proto/opentelemetry/proto/metrics/v1/metrics.proto",
                 "src/proto/opentelemetry-proto/opentelemetry/proto/collector/metrics/v1/metrics_service.proto",
+                "src/proto/opentelemetry-proto/opentelemetry/proto/logs/v1/logs.proto",
+                "src/proto/opentelemetry-proto/opentelemetry/proto/collector/logs/v1/logs_service.proto",
             ],
             &["src/proto/opentelemetry-proto"],
             )
