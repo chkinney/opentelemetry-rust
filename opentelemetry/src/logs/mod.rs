@@ -14,7 +14,7 @@ pub enum LogError {
 
     /// Export failed to finish after a certain period and the processor stopped the export
     #[error("Exporting timed out after {} seconds", .0.as_secs())]
-    ExportTimedOut(time::Duration),
+    ExportTimedOut(std::time::Duration),
 
     /// Other errors propagated from logs SDK that weren't covered
     #[error(transparent)]

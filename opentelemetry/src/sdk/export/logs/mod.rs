@@ -1,9 +1,10 @@
 use crate::{
-    logs::{LogData, LogError},
-    sdk::trace::EvictedHashMap,
+    logs::{LogError, SeverityNumber},
+    sdk::{Resource, trace::EvictedHashMap},
+    trace::{SpanId, TraceFlags, TraceId},
 };
 use async_trait::async_trait;
-use std::fmt::Debug;
+use std::{borrow::Cow, fmt::Debug, sync::Arc, time::SystemTime};
 
 /// Describes the result of an export.
 pub type ExportResult = Result<(), LogError>;
