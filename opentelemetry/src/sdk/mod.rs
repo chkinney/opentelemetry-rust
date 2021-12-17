@@ -18,6 +18,8 @@ pub mod resource;
 #[cfg(feature = "trace")]
 #[cfg_attr(docsrs, doc(cfg(feature = "trace")))]
 pub mod trace;
+#[cfg(feature = "logs")]
+pub mod logs;
 
 pub use instrumentation::InstrumentationLibrary;
 pub use resource::Resource;

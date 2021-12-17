@@ -18,7 +18,8 @@ mod tonic {
                             .iter()
                             .map(|(k, v)| opentelemetry::KeyValue::new(k.clone(), v.clone()))
                             .collect::<Vec<_>>(),
-                    ).0,
+                    )
+                    .0,
                     dropped_attributes_count: 0,
                 }),
                 instrumentation_library_logs: vec![InstrumentationLibraryLogs {

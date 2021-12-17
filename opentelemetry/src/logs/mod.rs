@@ -1,22 +1,24 @@
 use crate::{
-    sdk::{trace::EvictedHashMap, Resource},
+    sdk::{trace::EvictedHashMap, Resource, export::ExportError},
     trace::{SpanId, TraceFlags, TraceId},
 };
 use std::{borrow::Cow, sync::Arc, time::SystemTime};
+use thiserror::Error;
 
-#[cfg_attr(feature = "serialize", derive(Deserialize, Serialize))]
-#[derive(Clone, Debug, PartialEq)]
-pub struct LogData {
-    pub timestamp: SystemTime,
-    pub trace_id: TraceId,
-    pub span_id: SpanId,
-    pub trace_flags: TraceFlags,
-    pub severity_text: Cow<'static, str>,
-    pub severity_number: SeverityNumber,
-    pub name: Cow<'static, str>,
-    pub body: Cow<'static, str>,
-    pub resource: Option<Arc<Resource>>,
-    pub attributes: EvictedHashMap,
+/// Errors returned from the logs API.
+#[derive(Error, Debug)]
+pub enum LogError {
+    /// Export failed with the error returned by the exporter
+    #[error("Exporter {} encountered the following error(s): {0}", .0.exporter_name())]
+    ExportFailed(Box<dyn ExportError>),
+
+    /// Export failed to finish after a certain period and the processor stopped the export
+    #[error("Exporting timed out after {} seconds", .0.as_secs())]
+    ExportTimedOut(time::Duration),
+
+    /// Other errors propagated from logs SDK that weren't covered
+    #[error(transparent)]
+    Other(#[from] Box<dyn std::error::Error + Send + Sync + 'static>),
 }
 
 #[derive(Clone, Copy, PartialEq, Eq, Debug, Hash)]

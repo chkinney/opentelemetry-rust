@@ -1,10 +1,10 @@
 mod common;
+#[cfg(feature = "logs")]
+mod logs;
 #[cfg(feature = "metrics")]
 mod metrics;
 mod resource;
 mod traces;
-#[cfg(feature = "logs")]
-mod logs;
 
 #[cfg(all(feature = "tonic", feature = "metrics"))]
 pub(crate) use metrics::tonic::record_to_metric;
