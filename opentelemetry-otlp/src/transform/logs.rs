@@ -9,8 +9,8 @@ mod tonic {
     };
     use opentelemetry::Value;
 
-    impl From<opentelemetry::logs::LogData> for ResourceLogs {
-        fn from(record: opentelemetry::logs::LogData) -> Self {
+    impl From<opentelemetry::sdk::export::logs::LogData> for ResourceLogs {
+        fn from(record: opentelemetry::sdk::export::logs::LogData) -> Self {
             ResourceLogs {
                 resource: record.resource.as_ref().map(|resource| Resource {
                     attributes: Attributes::from(

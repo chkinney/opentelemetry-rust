@@ -1,5 +1,5 @@
 use crate::{
-    sdk::{trace::EvictedHashMap, Resource, export::ExportError},
+    sdk::{export::ExportError, trace::EvictedHashMap, Resource},
     trace::{SpanId, TraceFlags, TraceId},
 };
 use std::{borrow::Cow, sync::Arc, time::SystemTime};

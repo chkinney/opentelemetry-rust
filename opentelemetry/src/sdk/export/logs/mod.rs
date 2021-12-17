@@ -1,6 +1,6 @@
 use crate::{
     logs::{LogError, SeverityNumber},
-    sdk::{Resource, trace::EvictedHashMap},
+    sdk::{trace::EvictedHashMap, Resource},
     trace::{SpanId, TraceFlags, TraceId},
 };
 use async_trait::async_trait;

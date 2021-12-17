@@ -7,7 +7,7 @@ use crate::{
     ExportConfig,
 };
 use async_trait::async_trait;
-use opentelemetry::{logs::LogData, sdk::export::trace::ExportResult};
+use opentelemetry::sdk::export::{logs::LogData, trace::ExportResult};
 
 #[derive(Clone, Debug)]
 pub enum LogRecorder {
