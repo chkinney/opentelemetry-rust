@@ -1,4 +1,7 @@
-use crate::logs::{LogData, LogError};
+use crate::{
+    logs::{LogData, LogError},
+    sdk::trace::EvictedHashMap,
+};
 use async_trait::async_trait;
 use std::fmt::Debug;
 
