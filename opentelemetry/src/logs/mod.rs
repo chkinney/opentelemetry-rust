@@ -22,6 +22,7 @@ pub enum LogError {
 }
 
 #[derive(Clone, Copy, PartialEq, Eq, Debug, Hash)]
+#[cfg_attr(feature = "serialize", derive(serde::Deserialize, serde::Serialize))]
 #[repr(i32)]
 pub enum SeverityNumber {
     Trace,
