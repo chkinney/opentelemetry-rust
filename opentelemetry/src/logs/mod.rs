@@ -1,9 +1,5 @@
-use crate::{
-    sdk::{export::ExportError, trace::EvictedHashMap, Resource},
-    trace::{SpanId, TraceFlags, TraceId},
-};
+use crate::sdk::export::ExportError;
 use futures::channel::{mpsc::TrySendError, oneshot::Canceled};
-use std::{borrow::Cow, sync::Arc, time::SystemTime};
 use thiserror::Error;
 
 /// Errors returned from the logs API.
