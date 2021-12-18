@@ -7,7 +7,10 @@ mod tonic {
         },
         transform::common::{to_nanos, tonic::Attributes},
     };
-    use opentelemetry::Value;
+    use opentelemetry::{
+        trace::{SpanId, TraceId},
+        Value,
+    };
 
     impl From<opentelemetry::sdk::export::logs::LogData> for ResourceLogs {
         fn from(record: opentelemetry::sdk::export::logs::LogData) -> Self {
@@ -29,13 +32,22 @@ mod tonic {
                         severity_number: SeverityNumber::from(record.severity_number).into(),
                         severity_text: record.severity_text.into(),
                         name: record.name.into(),
-                        // TODO: support any value type here, not just strings
                         body: Some(Value::String(record.body.clone()).into()),
                         dropped_attributes_count: record.attributes.dropped_count(),
                         attributes: Attributes::from(record.attributes).0,
                         flags: record.trace_flags.to_u8().into(),
-                        trace_id: record.trace_id.to_u128().to_be_bytes().to_vec(),
-                        span_id: record.span_id.to_u64().to_be_bytes().to_vec(),
+                        trace_id: record
+                            .trace_id
+                            .unwrap_or(TraceId::invalid())
+                            .to_u128()
+                            .to_be_bytes()
+                            .to_vec(),
+                        span_id: record
+                            .span_id
+                            .unwrap_or(SpanId::invalid())
+                            .to_u64()
+                            .to_be_bytes()
+                            .to_vec(),
                     }],
                 }],
             }
