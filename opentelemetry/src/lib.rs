@@ -254,6 +254,10 @@ pub mod propagation;
 #[cfg_attr(docsrs, doc(cfg(feature = "trace")))]
 pub mod trace;
 
+#[cfg(feature = "logs")]
+#[cfg_attr(docsrs, doc(cfg(feature = "logs")))]
+pub mod logs;
+
 #[cfg(any(feature = "metrics", feature = "trace"))]
 pub(crate) mod time {
     use std::time::SystemTime;

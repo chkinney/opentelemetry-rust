@@ -173,6 +173,8 @@ mod proto;
 pub mod proto;
 
 mod exporter;
+#[cfg(feature = "logs")]
+mod log;
 #[cfg(feature = "metrics")]
 mod metric;
 mod span;
@@ -181,6 +183,8 @@ mod transform;
 pub use crate::exporter::ExportConfig;
 pub use crate::span::{OtlpTracePipeline, SpanExporter};
 
+#[cfg(feature = "logs")]
+pub use crate::log::LogRecorder;
 #[cfg(feature = "metrics")]
 pub use crate::metric::{MetricsExporter, OtlpMetricPipeline};
 

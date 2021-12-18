@@ -1,4 +1,6 @@
 mod common;
+#[cfg(feature = "logs")]
+mod logs;
 #[cfg(feature = "metrics")]
 mod metrics;
 mod resource;
