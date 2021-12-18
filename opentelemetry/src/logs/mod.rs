@@ -2,6 +2,7 @@ use crate::{
     sdk::{export::ExportError, trace::EvictedHashMap, Resource},
     trace::{SpanId, TraceFlags, TraceId},
 };
+use futures::channel::{mpsc::TrySendError, oneshot::Canceled};
 use std::{borrow::Cow, sync::Arc, time::SystemTime};
 use thiserror::Error;
 
@@ -19,6 +20,27 @@ pub enum LogError {
     /// Other errors propagated from logs SDK that weren't covered
     #[error(transparent)]
     Other(#[from] Box<dyn std::error::Error + Send + Sync + 'static>),
+}
+
+impl<T> From<T> for LogError
+where
+    T: ExportError,
+{
+    fn from(err: T) -> Self {
+        LogError::ExportFailed(Box::new(err))
+    }
+}
+
+impl<T> From<TrySendError<T>> for LogError {
+    fn from(err: TrySendError<T>) -> Self {
+        LogError::Other(Box::new(err.into_send_error()))
+    }
+}
+
+impl From<Canceled> for LogError {
+    fn from(err: Canceled) -> Self {
+        LogError::Other(Box::new(err))
+    }
 }
 
 #[derive(Clone, Copy, PartialEq, Eq, Debug, Hash)]
